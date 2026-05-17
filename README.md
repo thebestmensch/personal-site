@@ -6,13 +6,13 @@ Built on Astro (forked from [satnaing/astro-paper](https://github.com/satnaing/a
 
 ## Routes
 
-| Path | What |
-| --- | --- |
-| `/` | vCard landing (name, blurb, contact links, Writing CTA) |
-| `/writing` | Post index |
-| `/writing/[slug]` | Individual post |
-| `/search` | Pagefind-powered full-text search |
-| `/rss.xml` | RSS feed |
+| Path              | What                                                    |
+| ----------------- | ------------------------------------------------------- |
+| `/`               | vCard landing (name, blurb, contact links, Writing CTA) |
+| `/writing`        | Post index                                              |
+| `/writing/[slug]` | Individual post                                         |
+| `/search`         | Pagefind-powered full-text search                       |
+| `/rss.xml`        | RSS feed                                                |
 
 `blog.thespenschs.com` 301-redirects to `https://jamesmensch.com/writing` via `functions/_middleware.js` (Cloudflare Pages Function). The redirect points at the writing root rather than a per-slug map because no posts were live before the domain change, so there were no inbound deep links to preserve. If real deep links appear later, switch to a slug map in the middleware.
 
