@@ -28,7 +28,7 @@ const elsewhere = [
   <main id="main-content" class="app-layout flex flex-1 flex-col">
     <section class="mt-12 sm:mt-16">
       <div
-        class="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:gap-7"
+        class="flex flex-col items-start gap-3 sm:flex-row sm:items-start sm:gap-7"
       >
         <Image
           src={portrait}
@@ -36,7 +36,7 @@ const elsewhere = [
           width={240}
           height={240}
           loading="eager"
-          class="h-[88px] w-[88px] shrink-0 rounded-[4px] object-cover sm:h-[120px] sm:w-[120px]"
+          class="h-[104px] w-[104px] shrink-0 rounded-[4px] object-cover sm:h-[120px] sm:w-[120px]"
           style="filter: contrast(0.95) saturate(0.85) sepia(0.08);"
         />
         <div class="flex flex-col">
@@ -48,12 +48,12 @@ const elsewhere = [
           <p
             class="mt-3 font-mono text-[0.72rem] tracking-[0.08em] text-foreground-muted uppercase"
           >
-            Austin · Engineer
+            Austin
           </p>
         </div>
       </div>
 
-      <p class="mt-7 font-serif text-[1.18rem] leading-[1.55] text-foreground">
+      <p class="mt-5 font-serif text-[1.18rem] leading-[1.55] text-foreground">
         I build developer tools and the kind of infrastructure most people don't
         notice when it's working. Most of my writing is about Claude Code, agent
         workflows, and a homelab running on a small NUC. I'm based in Austin
@@ -70,7 +70,7 @@ const elsewhere = [
       {
         recentPosts.length === 0 ? (
           <p class="mt-4 text-foreground-muted italic">
-            Nothing here yet, check back soon.
+            Nothing published yet.
           </p>
         ) : (
           <>
@@ -110,22 +110,26 @@ const elsewhere = [
       >
         Elsewhere
       </h2>
-      <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[0.95rem]">
+      <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[1rem]">
         {
-          elsewhere.map(({ href, label }) => (
-            <li>
-              <a
-                href={href}
-                class="-my-2 inline-block py-2 text-foreground hover:text-accent"
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  href.startsWith("http") ? "noopener noreferrer" : undefined
-                }
-              >
-                {label}
-              </a>
-            </li>
-          ))
+          elsewhere.map(({ href, label }) => {
+            const isExternal = href.startsWith("http");
+            return (
+              <li>
+                <a
+                  href={href}
+                  class="-my-2 inline-block py-2 text-foreground hover:text-accent hover:underline"
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                >
+                  {label}
+                  {isExternal && (
+                    <span class="sr-only"> (opens in new tab)</span>
+                  )}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </section>

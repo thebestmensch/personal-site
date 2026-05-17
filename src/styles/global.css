@@ -44,7 +44,7 @@ html[data-theme="light"] {
 
 @layer base {
   * {
-    @apply border-border outline-accent/75;
+    @apply border-border;
     scrollbar-width: auto;
     scrollbar-color: var(--color-muted) transparent;
   }
@@ -56,6 +56,7 @@ html[data-theme="light"] {
     font-size: 17px;
     line-height: 1.65;
   }
+  /* Focus ring per blog design spec §1: 2px ink, 2px offset; clarity over brand. */
   a,
   button {
     @apply outline-offset-2 outline-foreground focus-visible:outline-2;
