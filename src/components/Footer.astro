@@ -1,8 +1,5 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import Socials from "./Socials.astro";
-
-const currentYear = new Date().getFullYear();
 
 type Props = {
   noMarginTop?: boolean;
@@ -16,17 +13,21 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
   {...attrs}
 >
   <div
-    class:list={[
-      "py-6 sm:py-4",
-      "border-t border-border",
-      "flex flex-col items-center justify-between sm:flex-row-reverse",
-    ]}
+    class="mt-16 flex items-baseline justify-between border-t border-border pt-4 pb-4 font-mono text-[0.72rem] text-foreground-muted"
   >
-    <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>Copyright &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
-    </div>
+    <span>© James Mensch</span>
+    <span class="flex items-baseline gap-1.5">
+      <a
+        href="/rss.xml"
+        class="-my-3 inline-block py-3 text-foreground-muted hover:text-accent hover:underline"
+        >rss</a
+      >
+      <span class="text-foreground-faint" aria-hidden="true">·</span>
+      <a
+        href="mailto:james@jamesmensch.com"
+        class="-my-3 inline-block py-3 text-foreground-muted hover:text-accent hover:underline"
+        >email</a
+      >
+    </span>
   </div>
 </footer>
