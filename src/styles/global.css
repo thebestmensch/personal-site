@@ -7,14 +7,14 @@
    different repo, different scope. */
 :root,
 html[data-theme="light"] {
-  --background: #fbf7f1;          /* parchment */
-  --foreground: #2c2825;          /* warm-brown ink */
-  --foreground-muted: #6b645b;    /* ink-2 */
-  --foreground-faint: #a9a29a;    /* ink-3 */
-  --accent: #7a5775;              /* muted plum/aubergine */
+  --background: #fbf7f1; /* parchment */
+  --foreground: #2c2825; /* warm-brown ink */
+  --foreground-muted: #6b645b; /* ink-2 */
+  --foreground-faint: #a9a29a; /* ink-3 */
+  --accent: #7a5775; /* muted plum/aubergine */
   --accent-hover: #684864;
-  --muted: #f3ede4;               /* bg-subtle */
-  --border: #ebe5dc;              /* bg-hover doubles as border */
+  --muted: #f3ede4; /* bg-subtle */
+  --border: #ebe5dc; /* bg-hover doubles as border */
 }
 
 @theme inline {
