@@ -23,6 +23,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# pagefind
+# pagefind search index (regenerated on build)
+public/pagefind/
 
-public/pagefind
+# visual QA scratch (screenshots, ad-hoc scripts)
+.qa/

@@ -19,36 +19,42 @@ interface Social {
 export const SOCIALS: Social[] = [
   {
     name: "GitHub",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on GitHub`,
+    href: "https://github.com/thebestmensch",
+    linkTitle: `${SITE.author} on GitHub`,
     icon: IconGitHub,
   },
   {
-    name: "X",
-    href: "https://x.com/username",
-    linkTitle: `${SITE.title} on X`,
-    icon: IconBrandX,
-  },
-  {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/username/",
-    linkTitle: `${SITE.title} on LinkedIn`,
+    href: "https://www.linkedin.com/in/jamesmensch/",
+    linkTitle: `${SITE.author} on LinkedIn`,
     icon: IconLinkedin,
   },
   {
+    name: "X",
+    href: "https://x.com/thebestmensch",
+    linkTitle: `${SITE.author} on X`,
+    icon: IconBrandX,
+  },
+  {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
-    linkTitle: `Send an email to ${SITE.title}`,
+    href: "mailto:james@jamesmensch.com",
+    linkTitle: `Email ${SITE.author}`,
     icon: IconMail,
   },
 ] as const;
 
 export const SHARE_LINKS: Social[] = [
   {
-    name: "WhatsApp",
-    href: "https://wa.me/?text=",
-    linkTitle: `Share this post via WhatsApp`,
-    icon: IconWhatsapp,
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/sharing/share-offsite/?url=",
+    linkTitle: `Share this post on LinkedIn`,
+    icon: IconLinkedin,
+  },
+  {
+    name: "X",
+    href: "https://x.com/intent/post?url=",
+    linkTitle: `Share this post on X`,
+    icon: IconBrandX,
   },
   {
     name: "Facebook",
@@ -57,10 +63,10 @@ export const SHARE_LINKS: Social[] = [
     icon: IconFacebook,
   },
   {
-    name: "X",
-    href: "https://x.com/intent/post?url=",
-    linkTitle: `Share this post on X`,
-    icon: IconBrandX,
+    name: "WhatsApp",
+    href: "https://wa.me/?text=",
+    linkTitle: `Share this post via WhatsApp`,
+    icon: IconWhatsapp,
   },
   {
     name: "Telegram",

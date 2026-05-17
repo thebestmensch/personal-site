@@ -1,30 +1,30 @@
 @import "tailwindcss";
 @import "./typography.css";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
+/* SpenschSuite tokens — warm parchment palette, Nunito, muted-plum accent.
+   Mirrors home-lab services/shared/static/css/tokens.css for cross-suite
+   consistency. Accent is intentionally NOT in the home-lab registry —
+   different repo, different scope. */
 :root,
 html[data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --muted: #e6e6e6;
-  --border: #ece9e9;
-}
-
-html[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --muted: #343f60;
-  --border: #ab4b08;
+  --background: #fbf7f1;          /* parchment */
+  --foreground: #2c2825;          /* warm-brown ink */
+  --foreground-muted: #6b645b;    /* ink-2 */
+  --foreground-faint: #a9a29a;    /* ink-3 */
+  --accent: #7a5775;              /* muted plum/aubergine */
+  --accent-hover: #684864;
+  --muted: #f3ede4;               /* bg-subtle */
+  --border: #ebe5dc;              /* bg-hover doubles as border */
 }
 
 @theme inline {
-  --font-app: var(--font-google-sans-code);
+  --font-app: var(--font-nunito);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-faint: var(--foreground-faint);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-muted: var(--muted);
   --color-border: var(--border);
 }
@@ -63,8 +63,10 @@ html[data-theme="dark"] {
   @apply underline decoration-wavy decoration-2 underline-offset-8;
 }
 
+/* WCAG 2.5.5 tap target floor — 44×44 CSS px for interactive elements
+   on the landing page. Per-element styling handles this on the vCard. */
+
 /* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
-/* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 1rem;
 }
