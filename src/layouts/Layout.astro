@@ -13,7 +13,6 @@ type Props = {
   canonicalURL?: string;
   pubDatetime?: Date;
   modDatetime?: Date | null;
-  scrollSmooth?: boolean;
 };
 
 const {
@@ -25,7 +24,6 @@ const {
   canonicalURL = new URL(Astro.url.pathname, Astro.url),
   pubDatetime,
   modDatetime,
-  scrollSmooth = false,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
@@ -59,11 +57,7 @@ const structuredData = pubDatetime
 ---
 
 <!doctype html>
-<html
-  dir={SITE.dir}
-  lang={SITE.lang ?? "en"}
-  class={scrollSmooth ? "scroll-smooth" : undefined}
->
+<html dir={SITE.dir} lang={SITE.lang ?? "en"}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
