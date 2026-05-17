@@ -1,30 +1,43 @@
 @import "tailwindcss";
 @import "./typography.css";
 
-/* SpenschSuite tokens — warm parchment palette, Nunito, muted-plum accent.
-   Mirrors home-lab services/shared/static/css/tokens.css for cross-suite
-   consistency. Accent is intentionally NOT in the home-lab registry —
-   different repo, different scope. */
+/* Paperback palette — shared identity with blog.thespenschs.com.
+   Canonical source: ~/Documents/local/jm/blog/docs/superpowers/specs/2026-04-25-blog-design.md
+   Token names preserved (--background, --foreground, etc.) so Tailwind
+   utility classes don't need a sweep — only values change. */
 :root,
 html[data-theme="light"] {
-  --background: #fbf7f1; /* parchment */
+  --background: #f2ebdd; /* parchment */
   --foreground: #2c2825; /* warm-brown ink */
-  --foreground-muted: #6b645b; /* ink-2 */
-  --foreground-faint: #a9a29a; /* ink-3 */
-  --accent: #7a5775; /* muted plum/aubergine */
-  --accent-hover: #684864;
-  --muted: #f3ede4; /* bg-subtle */
-  --border: #ebe5dc; /* bg-hover doubles as border */
+  --foreground-muted: #645a50; /* ink-2 — meta labels, dates */
+  --foreground-faint: #8a7f75; /* ink-3 — decorative only */
+  --accent: #3d5266; /* slate-blue — links, focus */
+  --accent-hover: #2e3d4d;
+  --accent-soft: rgba(61, 82, 102, 0.12);
+  --accent-warm: #a8623a; /* warm accent — callouts, rare */
+  --muted: #eae2d2; /* bg-subtle — code blocks */
+  --border: rgba(44, 40, 37, 0.12);
+
+  --font-serif:
+    "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
+    serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui,
+    sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 @theme inline {
-  --font-app: var(--font-nunito);
+  --font-app: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
   --color-foreground-faint: var(--foreground-faint);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-warm: var(--accent-warm);
   --color-muted: var(--muted);
   --color-border: var(--border);
 }
@@ -39,11 +52,13 @@ html[data-theme="light"] {
     @apply overflow-y-scroll scroll-smooth;
   }
   body {
-    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/15 selection:text-foreground;
+    font-size: 17px;
+    line-height: 1.65;
   }
   a,
   button {
-    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    @apply outline-offset-2 outline-foreground focus-visible:outline-2;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -52,19 +67,17 @@ html[data-theme="light"] {
 }
 
 @utility max-w-app {
-  @apply max-w-3xl;
+  max-width: 36em;
 }
 
 @utility app-layout {
-  @apply mx-auto w-full max-w-app px-4;
+  @apply mx-auto w-full max-w-app px-5 sm:px-6;
 }
 
 .active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  @apply underline decoration-2 underline-offset-4;
+  text-decoration-color: var(--accent);
 }
-
-/* WCAG 2.5.5 tap target floor — 44×44 CSS px for interactive elements
-   on the landing page. Per-element styling handles this on the vCard. */
 
 /* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
 :target {

@@ -1,5 +1,4 @@
 ---
-import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
@@ -51,8 +50,8 @@ const structuredData = {
 <!doctype html>
 <html
   dir={SITE.dir}
-  lang=`${SITE.lang ?? "en"}`
-  class={`${scrollSmooth && "scroll-smooth"}`}
+  lang={SITE.lang ?? "en"}
+  class={scrollSmooth ? "scroll-smooth" : undefined}
 >
   <head>
     <meta charset="UTF-8" />
@@ -60,12 +59,6 @@ const structuredData = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
-
-    <!-- Load Font -->
-    <Font
-      cssVariable="--font-nunito"
-      preload={[{ subset: "latin", weight: 400, style: "normal" }]}
-    />
 
     <!-- General Meta Tags -->
     <title>{title}</title>
@@ -112,7 +105,7 @@ const structuredData = {
       set:html={JSON.stringify(structuredData)}
     />
 
-    <!-- Enable RSS feed auto-discovery  -->
+    <!-- Enable RSS feed auto-discovery -->
     <!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery -->
     <link
       rel="alternate"
@@ -121,7 +114,7 @@ const structuredData = {
       href={new URL("rss.xml", Astro.site)}
     />
 
-    <meta name="theme-color" content="" />
+    <meta name="theme-color" content="#F2EBDD" />
 
     {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
