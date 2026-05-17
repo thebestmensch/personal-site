@@ -20,11 +20,14 @@ const { page } = Astro.props;
 
 <Layout title={`Writing | ${SITE.title}`}>
   <Header />
-  <Main pageTitle="Writing" pageDesc="Notes, essays, and things worth writing down.">
+  <Main
+    pageTitle="Writing"
+    pageDesc="Notes, essays, and things worth writing down."
+  >
     {
       page.data.length === 0 ? (
         <p class="mt-8 text-foreground-muted italic">
-          Nothing here yet — check back soon.
+          Nothing here yet, check back soon.
         </p>
       ) : (
         <ul>

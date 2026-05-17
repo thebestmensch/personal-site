@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://jamesmensch.com/",
   author: "James Mensch",
   profile: "https://jamesmensch.com/",
-  desc: "James Mensch — building products that make the world a better place.",
+  desc: "James Mensch, building products that make the world a better place.",
   title: "James Mensch",
   ogImage: "og.png",
   lightAndDarkMode: false,
