@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://jamesmensch.com/",
   author: "James Mensch",
   profile: "https://jamesmensch.com/",
-  desc: "James Mensch, building products that make the world a better place.",
+  desc: "I build developer tools and the kind of infrastructure most people don't notice when it's working. Most of my writing is about Claude Code, agent workflows, and a homelab running on a small NUC. I'm based in Austin with three dogs.",
   title: "James Mensch",
   ogImage: "og.png",
   lightAndDarkMode: false,
