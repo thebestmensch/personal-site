@@ -43,7 +43,12 @@ import { SITE } from "@/config";
       canUseHistory = false;
     }
 
-    const fallback = sessionStorage.getItem("backUrl") || "/writing";
+    let fallback = "/writing";
+    try {
+      fallback = sessionStorage.getItem("backUrl") || "/writing";
+    } catch {
+      // sessionStorage blocked in strict privacy mode (e.g. Safari private).
+    }
     backButton.href = fallback;
 
     backButton.onclick = (e: MouseEvent) => {
