@@ -18,15 +18,31 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
     <span>© James Mensch</span>
     <span class="flex items-baseline gap-1.5">
       <a
-        href="/rss.xml"
+        href="https://github.com/thebestmensch"
+        target="_blank"
+        rel="noopener noreferrer"
         class="-my-3 inline-block py-3 text-foreground-muted hover:text-accent hover:underline"
-        >rss</a
+        >github<span class="sr-only"> (opens in new tab)</span></a
+      >
+      <span class="text-foreground-faint" aria-hidden="true">·</span>
+      <a
+        href="https://www.linkedin.com/in/jamesmensch/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="-my-3 inline-block py-3 text-foreground-muted hover:text-accent hover:underline"
+        >linkedin<span class="sr-only"> (opens in new tab)</span></a
       >
       <span class="text-foreground-faint" aria-hidden="true">·</span>
       <a
         href="mailto:james@jamesmensch.com"
         class="-my-3 inline-block py-3 text-foreground-muted hover:text-accent hover:underline"
         >email</a
+      >
+      <span class="text-foreground-faint" aria-hidden="true">·</span>
+      <a
+        href="/rss.xml"
+        class="-my-3 inline-block py-3 text-foreground-muted hover:text-accent hover:underline"
+        >rss</a
       >
     </span>
   </div>

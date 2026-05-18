@@ -16,11 +16,6 @@ const formatMonthYear = (d: Date) => {
   return `${mm} / ${d.getFullYear()}`;
 };
 
-const elsewhere = [
-  { href: "https://github.com/thebestmensch", label: "github" },
-  { href: "https://www.linkedin.com/in/jamesmensch/", label: "linkedin" },
-  { href: "mailto:james@jamesmensch.com", label: "email" },
-] as const;
 ---
 
 <Layout>
@@ -104,35 +99,6 @@ const elsewhere = [
       }
     </section>
 
-    <section class="mt-14">
-      <h2
-        class="font-mono text-[0.72rem] tracking-[0.08em] text-foreground-muted uppercase"
-      >
-        Elsewhere
-      </h2>
-      <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[1rem]">
-        {
-          elsewhere.map(({ href, label }) => {
-            const isExternal = href.startsWith("http");
-            return (
-              <li>
-                <a
-                  href={href}
-                  class="-my-2 inline-block py-2 text-foreground hover:text-accent hover:underline"
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noopener noreferrer" : undefined}
-                >
-                  {label}
-                  {isExternal && (
-                    <span class="sr-only"> (opens in new tab)</span>
-                  )}
-                </a>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </section>
   </main>
   <Footer />
 </Layout>
