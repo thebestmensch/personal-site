@@ -26,11 +26,11 @@ The first two are advice. The third is enforcement. The difference matters more 
 
 I have something like 80 feedback memories accumulated across sessions. They're good. They cover real failure modes: "verify before acting on summary claims," "snapshot live external resources before PUT/DELETE," "subagents can't see staged-but-uncommitted changes."
 
-These memories load when Claude starts a session. They're written in the imperative: *Always X. Never Y.* Read in isolation, they're a complete operational discipline.
+These memories load when Claude starts a session. They're written in the imperative: _Always X. Never Y._ Read in isolation, they're a complete operational discipline.
 
 In practice, the moment Claude is mid-task (three tool calls deep into an investigation, momentum building), those memories quietly stop being load-bearing. A rule that says "verify state before describing it to advisory agents" doesn't stop a confident-sounding agent dispatch with a stale premise. The rule existed. The behavior happened anyway.
 
-This isn't Claude's failure. It's mine, for treating *I documented it* as *the system enforces it.*
+This isn't Claude's failure. It's mine, for treating _I documented it_ as _the system enforces it._
 
 ## Hooks enforce
 
@@ -62,4 +62,4 @@ Hooks are harder to evolve than memory. Adding a memory takes one paragraph. Add
 
 Most things don't need to be hooks. Most things can be a memory rule that gets followed most of the time. But for the things that keep getting skipped (verification, review gates, dispatch protocols), a hook is the only structure that survives momentum.
 
-If you're scaling your Claude Code setup beyond a single `CLAUDE.md`, the question isn't *what should I write.* It's *what should I make impossible to skip.*
+If you're scaling your Claude Code setup beyond a single `CLAUDE.md`, the question isn't _what should I write._ It's _what should I make impossible to skip._

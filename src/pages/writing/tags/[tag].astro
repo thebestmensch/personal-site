@@ -1,0 +1,66 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import postFilter from "@/utils/postFilter";
+import { slugifyStr } from "@/utils/slugify";
+import { SITE } from "@/config";
+
+export const getStaticPaths = (async () => {
+  // Build tag set from the publishable collection only — matches the visibility
+  // filter applied by /writing and the homepage. Otherwise scheduled posts
+  // leak topic metadata via empty /writing/tags/<slug> pages.
+  const posts = await getCollection("blog", postFilter);
+  const tagSet = new Map<string, string>();
+  for (const post of posts) {
+    for (const t of post.data.tags ?? []) {
+      const slug = slugifyStr(t);
+      if (!tagSet.has(slug)) tagSet.set(slug, t);
+    }
+  }
+  return Array.from(tagSet.entries()).map(([slug, name]) => ({
+    params: { tag: slug },
+    props: { tagName: name },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.params;
+const { tagName } = Astro.props as { tagName: string };
+
+const posts = await getCollection(
+  "blog",
+  entry =>
+    postFilter(entry) &&
+    (entry.data.tags ?? []).some(t => slugifyStr(t) === tag)
+);
+const sorted = getSortedPosts(posts);
+---
+
+<Layout title={`#${tagName} | ${SITE.title}`}>
+  <Header />
+  <Main
+    pageTitle={[`Posts tagged with `, `#${tagName}`]}
+    titleTransition={tag!}
+    pageDesc={`All posts tagged with #${tagName}.`}
+  >
+    {
+      sorted.length === 0 ? (
+        <p class="mt-8 text-foreground-muted italic">
+          No posts with this tag yet.
+        </p>
+      ) : (
+        <ul>
+          {sorted.map(data => (
+            <Card {...data} />
+          ))}
+        </ul>
+      )
+    }
+  </Main>
+  <Footer />
+</Layout>

@@ -53,8 +53,8 @@ html[data-theme="light"] {
   }
   body {
     @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/15 selection:text-foreground;
-    font-size: 17px;
-    line-height: 1.65;
+    font-size: 15.5px;
+    line-height: 1.6;
   }
   /* Focus ring per blog design spec §1: 2px ink, 2px offset; clarity over brand. */
   a,

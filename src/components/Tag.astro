@@ -11,11 +11,13 @@ const { tag, tagName, size = "lg" } = Astro.props;
 ---
 
 <li>
-  <span
+  <a
+    href={`/writing/tags/${tag}`}
     transition:name={tag}
     class:list={[
       "inline-flex items-center gap-0.5",
       "border-b-2 border-dashed border-foreground-muted text-foreground-muted",
+      "hover:border-accent hover:text-accent",
       { "text-sm": size === "sm" },
       { "text-lg": size === "lg" },
     ]}
@@ -28,5 +30,5 @@ const { tag, tagName, size = "lg" } = Astro.props;
       ]}
     />
     {tagName}
-  </span>
+  </a>
 </li>

@@ -20,18 +20,45 @@ import { SITE } from "@/config";
 }
 
 <script>
-  /* Update Search Praam */
-  function updateGoBackUrl() {
-    const backButton: HTMLAnchorElement | null =
-      document.querySelector("#back-button");
+  /**
+   * Back-button behavior:
+   *   1. Same-origin referrer (and not the current page) → history.back().
+   *   2. Otherwise → fall back to sessionStorage `backUrl` (last visited list
+   *      page set by Main.astro / search.astro), then `/writing`.
+   */
+  function wireGoBack() {
+    const backButton =
+      document.querySelector<HTMLAnchorElement>("#back-button");
+    if (!backButton) return;
 
-    const backUrl = sessionStorage.getItem("backUrl");
-
-    if (backUrl && backButton) {
-      backButton.href = backUrl;
+    let canUseHistory = false;
+    try {
+      if (document.referrer) {
+        const ref = new URL(document.referrer);
+        canUseHistory =
+          ref.origin === window.location.origin &&
+          ref.pathname !== window.location.pathname;
+      }
+    } catch {
+      canUseHistory = false;
     }
+
+    let fallback = "/writing";
+    try {
+      fallback = sessionStorage.getItem("backUrl") || "/writing";
+    } catch {
+      // sessionStorage blocked in strict privacy mode (e.g. Safari private).
+    }
+    backButton.href = fallback;
+
+    backButton.onclick = (e: MouseEvent) => {
+      if (!canUseHistory) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      history.back();
+    };
   }
 
-  document.addEventListener("astro:page-load", updateGoBackUrl);
-  updateGoBackUrl();
+  document.addEventListener("astro:page-load", wireGoBack);
+  wireGoBack();
 </script>
