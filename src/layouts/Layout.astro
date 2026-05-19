@@ -164,6 +164,18 @@ const structuredData = pubDatetime
         };
       })();
     </script>
+
+    <script>
+      import * as Counterscale from "@counterscale/tracker";
+      Counterscale.init({
+        siteId: "jamesmensch-com",
+        reporterUrl: "https://analytics.jamesmensch.com/collect",
+        autoTrackPageviews: false,
+      });
+      document.addEventListener("astro:page-load", () => {
+        Counterscale.trackPageview();
+      });
+    </script>
   </head>
   <body>
     <slot />
