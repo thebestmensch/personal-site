@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://jamesmensch.com/",
   author: "James Mensch",
   profile: "https://jamesmensch.com/",
-  desc: "I build developer tools and the kind of infrastructure most people don't notice when it's working. Most of my writing is about Claude Code, agent workflows, and a homelab running on a small NUC. I'm based in Austin with three dogs.",
+  desc: "I build for the human side of tech. Cofounder/CTO at OneOnMe, a kinder way to send gifts. Magnifai, New Knowledge, and Google before. Austin.",
   title: "James Mensch",
   ogImage: "og.png",
   lightAndDarkMode: false,
