@@ -4,6 +4,19 @@ Source for [jamesmensch.com](https://jamesmensch.com/): a single-page vCard land
 
 Built on Astro (forked from [satnaing/astro-paper](https://github.com/satnaing/astro-paper)) with a SpenschSuite theme override (Nunito, parchment background, warm-brown ink scale). Deployed to Cloudflare Pages on every push to `main`.
 
+## Deploy
+
+Cloudflare **Pages** is the deploy target.
+
+Cloudflare **Workers Builds** is intentionally disconnected for this repo:
+
+- The Cloudflare GitHub App (installed at account level) attempts a Worker build on every push.
+- Without a `wrangler.toml`, that build fails instantly and posts a permanent red check on `main` and every PR.
+- To disconnect: Cloudflare dashboard → Workers & Pages → Build → connected repos.
+- Do not re-add the Workers connection unless migrating off Pages.
+
+Tracked in [JM-263](https://linear.app/thebestmensch/issue/JM-263).
+
 ## Routes
 
 | Path              | What                                                    |
