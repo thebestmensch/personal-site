@@ -28,3 +28,6 @@ public/pagefind/
 
 # visual QA scratch (screenshots, ad-hoc scripts)
 .qa/
+
+# local git worktrees (e.g. .worktrees/<slug>/ for parallel CC sessions)
+.worktrees/
