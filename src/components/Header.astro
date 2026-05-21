@@ -2,20 +2,7 @@
 import { SITE } from "@/config";
 
 const { pathname } = Astro.url;
-const currentPath =
-  pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
-
 const isHome = pathname === "/";
-
-const isActive = (path: string) => {
-  if (path.startsWith("http")) return false;
-  return currentPath === path;
-};
-
-const navItems = [
-  { href: "/writing", label: "writing", external: false },
-  { href: "/rss.xml", label: "rss", external: false },
-] as const;
 ---
 
 <a
@@ -26,43 +13,17 @@ const navItems = [
   Skip to content
 </a>
 
-<header class="app-layout">
-  <div
-    class:list={[
-      "flex items-baseline border-b border-border py-5 sm:py-6",
-      isHome ? "justify-end" : "justify-between",
-    ]}
-  >
-    {
-      !isHome && (
+{
+  !isHome && (
+    <header class="app-layout">
+      <div class="flex items-baseline border-b border-border py-5 sm:py-6">
         <a
           href="/"
           class="font-serif text-[1.05rem] leading-none font-semibold whitespace-nowrap text-foreground hover:text-accent"
         >
           {SITE.title}
         </a>
-      )
-    }
-    <nav aria-label="Primary navigation">
-      <ul class="flex gap-5 font-mono text-[0.78rem] text-foreground-muted">
-        {
-          navItems.map(({ href, label, external }) => (
-            <li>
-              <a
-                href={href}
-                class:list={[
-                  "-my-3 inline-block py-3 text-foreground-muted hover:text-accent",
-                  { "active-nav": isActive(href) },
-                ]}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-              >
-                {label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div>
-</header>
+      </div>
+    </header>
+  )
+}

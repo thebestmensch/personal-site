@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@/utils/slugify";
 import { getPath } from "@/utils/getPath";
-import Datetime from "./Datetime.astro";
+import { formatMonthYear } from "@/utils/formatMonthYear";
 
 type Props = {
   variant?: "h2" | "h3";
@@ -10,32 +10,57 @@ type Props = {
 
 const { variant: Heading = "h2", id, data, filePath } = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, description, pubDatetime, modDatetime, tags, timezone } = data;
+
+// Match getSortedPosts() — sort uses modDatetime ?? pubDatetime, so the
+// rendered date must too, otherwise an edited post jumps to the top of
+// /writing while still showing its original month/year.
+const effectiveDate = modDatetime ?? pubDatetime;
 ---
 
-<li class="my-9">
-  <a
-    href={getPath(id, filePath)}
-    class:list={[
-      "inline-block text-[1.05rem] leading-[1.35] font-medium text-accent",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
+<li class="my-9 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
+  <span
+    class="font-mono text-[0.68rem] tracking-[0.04em] whitespace-nowrap text-foreground-faint sm:w-[5.5rem] sm:shrink-0"
   >
-    <Heading
-      style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
+    {formatMonthYear(effectiveDate, timezone)}
+  </span>
+  <div class="flex flex-col gap-1.5">
+    <a
+      href={getPath(id, filePath)}
+      class:list={[
+        "font-serif text-[1.05rem] leading-[1.35] text-foreground",
+        "decoration-[1px] underline-offset-[5px] hover:text-accent hover:underline",
+        "focus-visible:no-underline focus-visible:underline-offset-0",
+      ]}
     >
-      {title}
-    </Heading>
-  </a>
-  <div class="mt-2">
-    <Datetime {...props} />
+      <Heading
+        style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
+      >
+        {title}
+      </Heading>
+    </a>
+    {
+      description && (
+        <p class="text-[0.88rem] leading-[1.5] text-foreground-muted">
+          {description}
+        </p>
+      )
+    }
+    {
+      tags && tags.length > 0 && (
+        <ul class="mt-0.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.7rem] text-foreground-faint">
+          {tags.map(tag => (
+            <li>
+              <a
+                href={`/writing/tags/${slugifyStr(tag)}`}
+                class="hover:text-accent"
+              >
+                #{tag}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </div>
-  {
-    description && (
-      <p class="mt-2 text-[0.92rem] leading-[1.55] text-foreground-muted">
-        {description}
-      </p>
-    )
-  }
 </li>
