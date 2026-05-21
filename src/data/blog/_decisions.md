@@ -21,6 +21,9 @@ This is the durable substrate for iterating on the blog: when a question gets an
 - **Distribution sequence post-publish:** Bluesky thread same day → TLDR AI submission → HN self-submit (Tue-Thu 8-10am PT or Sun 6-9pm PT) → dev.to cross-post with canonicalURL → LinkedIn native post (key argument, link in first comment). No Medium (paywall + AI-suppression). No Hashnode. (2026-05-21)
 - **Style guide stays private (colocated in repo).** No major AI-eng blogger publishes a voice guide publicly. The novel-content play is writing a post **about** the colocated-guide pattern, linking to the raw file. Guide itself stays here as living artifact. (2026-05-21)
 - **Hold off on a blog-writer slash command / agent.** Rules live in three places already (`_guide.md`, `/jm-voice`, `/jm-pr`). Build the slash command when we feel real friction after 2-3 more posts, not before. (2026-05-21)
+- **Title rule: searchability test.** In unsettled spaces (AI-eng now, post-2024), readers find posts by googling their problem, not browsing. The title should contain the words a frustrated reader would type at 2am when they hit the thing the post solves. Complementary to "claim, not topic"; a title can pass one and fail the other. Surfaced 2026-05-21 during the retitle iteration: "AI rules drift. Shell scripts don't." passed claim but failed search (nobody types "AI rules drift"); "Don't let your AI decide which rules to follow" passes both. Rule decays as the space matures. (2026-05-21)
+- **Live post title (Q13): "Don't let your AI decide which rules to follow."** Picked over the research-recommended "AI rules drift. Shell scripts don't." after the searchability test. New slug: `dont-let-ai-decide`. (2026-05-21)
+- **Live post voice (Q14): hybrid I/we, applied.** "I tried that. Then I layered on dozens of rules..." (personal observation, kept as I). "We use Claude Code at OneOnMe", "when we commit a UI-touching change" (team action, kept as we). Anti-pattern guardrail held: no "we" used to mean "I, inflated." (2026-05-21)
 - **OneOnMe brand alignment scan: skip.** This is JM's personal blog, not OneOnMe's. "We at OneOnMe" appears because most tech posts will be OneOnMe-learnings, not because the blog is positioned as a OneOnMe channel. (2026-05-21)
 
 ## Open questions
@@ -39,13 +42,6 @@ Numbered for easy answering. When answered, move to "Decided" with the call + on
 10. **Featured post limit.** Schema allows multi `featured`. Cap at 1, 2, no cap?
 11. **Comments / discussion.** Site has none. Add (giscus, utterances)? Send people to Bluesky / HN?
 12. **Code block conventions.** How long is too long for inline? When to extract to a gist or repo? Highlight theme? (Research says 1-4 blocks max per post as punctuation, not content.)
-13. **Retitle the live post?** Research says "Stop X. Start Y." is saturated. Candidate retitles (pick or veto):
-    - (a) "AI rules drift. Shell scripts don't." (declarative contrast, one sentence)
-    - (b) "The problem with AI rules is they're just prompts" (names the insight)
-    - (c) "How I replaced my Claude rules with shell hooks" (personal proof-of-work)
-    - (d) "Your AI rules are just prompts. Here's what to use instead." (claim, not command)
-    - (e) Keep current title (the formula is worn but the argument is fresh; you may judge it survives the saturation)
-14. **Revise the live post to hybrid I/we?** The current version is all-"we" (per the 2026-05-21 directive). Founder-voice corpus suggests reverting personal-observation sentences ("noticed myself skipping", "wrote 80+ rules across sessions") to "I" while keeping team-execution sentences (the commit gauntlet, "we use Claude Code at OneOnMe") as "we". Yes / no / specific guidance?
 
 ## Site-level fixes surfaced by distribution audit (not blog-rule decisions, but worth tracking)
 
