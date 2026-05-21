@@ -13,11 +13,11 @@ description: "I wrote 80+ rules to shape my AI coding assistant. It ignored them
 
 I use [Claude Code](https://claude.com/claude-code), an AI coding assistant that runs in the terminal. It reads my files, edits them, runs commands. Most of the published advice for shaping it says the same thing: write a `CLAUDE.md` with your rules and the assistant will follow them.
 
-I tried that. Then I added 80 more rules in what's called feedback memory, accumulated across sessions. Things like *verify state before describing it to a sub-agent* and *snapshot live resources before PUT/DELETE*. Read in isolation, they're a complete operational discipline.
+I tried that. Then I added 80 more rules in what's called feedback memory, accumulated across sessions. Things like _verify state before describing it to a sub-agent_ and _snapshot live resources before PUT/DELETE_. Read in isolation, they're a complete operational discipline.
 
 In practice, the moment Claude is three tool calls deep into an investigation, those rules quietly stop being load-bearing. The discipline existed in writing. The behavior happened anyway.
 
-This isn't Claude's failure. It's mine, for treating *I documented it* as *the system enforces it.*
+This isn't Claude's failure. It's mine, for treating _I documented it_ as _the system enforces it._
 
 ## What actually enforces
 
@@ -49,4 +49,4 @@ None of this is in my prompt. It's all infrastructure.
 
 Hooks are harder to evolve than rules. Adding a rule takes one paragraph. Adding a hook means a shell script, a matcher pattern, an entry in `settings.json`, and accepting that the hook will run on every applicable event until I remove it. Most things don't need to be hooks. Most things can stay as a rule that gets followed most of the time. But for the things that keep getting skipped (verification, review gates, dispatch protocols), a hook is the only structure that survives momentum.
 
-If you're scaling your AI workflow beyond a single config file, the question isn't *what should I write.* It's *what should I make impossible to skip.*
+If you're scaling your AI workflow beyond a single config file, the question isn't _what should I write._ It's _what should I make impossible to skip._
