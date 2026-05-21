@@ -56,6 +56,8 @@ If the call turns out wrong later, update the post. Don't pre-hedge.
 
 Pro register, applied via `/jm-voice --pro`. The full voice rules live at `~/.me/voice.md`. Highlights that get violated most:
 
+- **Collective "we", not "I".** The blog speaks as "we at OneOnMe", not as James-solo. Even when the specific experience was one engineer's, lift to team-level framing when honest, rephrase when not. Don't claim team-scale facts that are personal-only. The byline stays "James Mensch"; the voice inside the post is "we".
+- **Reader is "you".** Address the reader directly when calling them to action: "If you're scaling your AI workflow..."
 - **No em-dashes.** Comma + connective, parens, or sentence break.
 - **No AI-speak tells.** "It's not just X, it's Y", "Whether you're X or Y", "Crucially,", "Notably,", "delve, robust, seamless, unlock." Strip on sight.
 - **No corporate openers.** "Certainly!", "Great question!", "In today's fast-paced world." Don't.
