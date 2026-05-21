@@ -7,15 +7,11 @@ import Footer from "@/components/Footer.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import getSortedPosts from "@/utils/getSortedPosts";
+import { formatMonthYear } from "@/utils/formatMonthYear";
 import portrait from "@/assets/portrait.png";
 
 const allPosts = await getCollection("blog");
 const recentPosts = getSortedPosts(allPosts).slice(0, 3);
-
-const formatMonthYear = (d: Date) => {
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  return `${mm} / ${d.getFullYear()}`;
-};
 ---
 
 <Layout>
@@ -23,36 +19,37 @@ const formatMonthYear = (d: Date) => {
   <main id="main-content" class="app-layout flex flex-1 flex-col">
     <section class="mt-12 sm:mt-16">
       <div
-        class="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:gap-7"
+        class="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:gap-8"
       >
         <Image
           src={portrait}
           alt="Portrait of James Mensch"
-          width={240}
-          height={240}
+          width={400}
+          height={400}
           loading="eager"
-          class="h-[96px] w-[96px] shrink-0 rounded-[4px] object-cover sm:h-[112px] sm:w-[112px]"
+          class="h-[160px] w-[160px] shrink-0 rounded-[4px] object-cover sm:h-[200px] sm:w-[200px]"
           style="filter: contrast(0.95) saturate(0.85) sepia(0.08);"
         />
         <div class="flex flex-col">
           <h1
-            class="font-serif text-[1.45rem] leading-[1.18] font-bold tracking-[-0.01em] text-foreground sm:text-[1.75rem] sm:tracking-[-0.015em]"
+            class="font-serif text-[1.65rem] leading-[1.18] font-bold tracking-[-0.01em] text-foreground sm:text-[2rem] sm:tracking-[-0.015em]"
           >
             James Mensch
           </h1>
           <p
-            class="mt-2 font-mono text-[0.68rem] tracking-[0.08em] text-foreground-muted uppercase"
+            class="mt-2 font-mono text-[0.7rem] tracking-[0.08em] text-foreground-muted uppercase"
           >
             Founder · Engineer
           </p>
         </div>
       </div>
 
-      <p class="mt-5 font-serif text-[1.08rem] leading-[1.55] text-foreground">
-        I build developer tools and the kind of infrastructure most people don't
-        notice when it's working. Most of my writing is about Claude Code, agent
-        workflows, and a homelab running on a small NUC. I'm based in Austin
-        with three dogs.
+      <p class="mt-6 font-serif text-[1.08rem] leading-[1.6] text-foreground">
+        I build for the human side of tech. Cofounder and CTO at OneOnMe, a
+        kinder way to send gifts in a virtualized world. Before that, cofounded
+        Magnifai for public-agency data work and led product and frontend at New
+        Knowledge, fighting disinformation. Engineer at Google in between. At
+        home in Austin with my partner and three dogs.
       </p>
     </section>
 
@@ -73,7 +70,10 @@ const formatMonthYear = (d: Date) => {
               {recentPosts.map(post => (
                 <li class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
                   <span class="font-mono text-[0.68rem] tracking-[0.04em] whitespace-nowrap text-foreground-faint sm:w-[5.5rem] sm:shrink-0">
-                    {formatMonthYear(post.data.pubDatetime)}
+                    {formatMonthYear(
+                      post.data.modDatetime ?? post.data.pubDatetime,
+                      post.data.timezone
+                    )}
                   </span>
                   <div class="flex flex-col gap-1.5">
                     <a
