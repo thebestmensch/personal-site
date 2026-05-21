@@ -9,6 +9,9 @@ import { slugifyStr } from "@/utils/slugify";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { formatMonthYear } from "@/utils/formatMonthYear";
 import portrait from "@/assets/portrait.png";
+import bean from "@/assets/dogs/bean.png";
+import gia from "@/assets/dogs/gia.png";
+import ruthie from "@/assets/dogs/ruthie.png";
 
 const allPosts = await getCollection("blog");
 const recentPosts = getSortedPosts(allPosts).slice(0, 3);
@@ -49,7 +52,36 @@ const recentPosts = getSortedPosts(allPosts).slice(0, 3);
         kinder way to send gifts in a virtualized world. Before that, cofounded
         Magnifai for public-agency data work and led product and frontend at New
         Knowledge, fighting disinformation. Engineer at Google in between. At
-        home in Austin with my partner and three dogs.
+        home in Austin with my partner and <span
+          class="dogs-trigger group relative inline-block cursor-default"
+          tabindex="0"
+          >three dogs<span class="dogs-pack" aria-hidden="true">
+            <Image
+              src={bean}
+              alt=""
+              width={192}
+              height={208}
+              class="dog dog--sm"
+              style="--i: 0;"
+            />
+            <Image
+              src={gia}
+              alt=""
+              width={192}
+              height={208}
+              class="dog dog--lg"
+              style="--i: 1;"
+            />
+            <Image
+              src={ruthie}
+              alt=""
+              width={192}
+              height={208}
+              class="dog dog--sm"
+              style="--i: 2;"
+            />
+          </span></span
+        >.
       </p>
     </section>
 
@@ -120,3 +152,65 @@ const recentPosts = getSortedPosts(allPosts).slice(0, 3);
   </main>
   <Footer />
 </Layout>
+
+<style>
+  .dogs-trigger {
+    border-bottom: 1px dotted var(--color-foreground-muted, currentColor);
+    border-bottom-color: rgba(127, 127, 127, 0.35);
+  }
+
+  .dogs-pack {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .dog {
+    display: block;
+    width: auto;
+    opacity: 0;
+    transform: translateY(18px) scale(0.85);
+    transform-origin: bottom center;
+    transition:
+      opacity 240ms ease-out,
+      transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: 0ms;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
+  }
+
+  .dog--sm {
+    height: 48px;
+  }
+
+  .dog--lg {
+    height: 60px;
+  }
+
+  .dogs-trigger:hover .dog,
+  .dogs-trigger:focus-visible .dog,
+  .dogs-trigger:focus-within .dog {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dog {
+      transition: opacity 200ms ease-out;
+      transform: none;
+    }
+    .dogs-trigger:hover .dog,
+    .dogs-trigger:focus-visible .dog,
+    .dogs-trigger:focus-within .dog {
+      transform: none;
+      transition-delay: 0ms;
+    }
+  }
+</style>
