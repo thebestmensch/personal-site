@@ -10,11 +10,19 @@ A claim, not a topic announcement. Falsifiable, sentence case, plain English.
 
 Test: if you could put "I believe that" in front of the title and it reads as a coherent sentence, it's a claim. If you can't, it's a topic. Topics get filed; claims get clicks.
 
+**Searchability test (load-bearing in unsettled spaces).** In a new or unsettled space (AI tooling, novel patterns, emerging frameworks), readers find posts by googling the problem they're stuck on, not by browsing. The title should contain the words a frustrated reader would type into the search bar at 2am, mid-task, when they hit the thing your post solves.
+
+Test: imagine the reader hitting your problem. What 4-6 words do they type into Google? If those words (or close synonyms) aren't in your title, the title is too clever.
+
+This is complementary to the I-believe-that claim test. A title can pass one and fail the other. Example: "AI rules drift. Shell scripts don't." passes the claim test but fails the search test (nobody types "AI rules drift"). "Don't let your AI decide which rules to follow" passes both: it's a falsifiable claim, AND it contains the words a frustrated reader would type when their AI assistant is ignoring their rules.
+
+The search test matters more in emerging spaces and decays as the space matures. AI-eng in 2026 is search-driven; settled categories (React, Postgres) are browse-driven and clever titles work fine there.
+
 **Sentence case, not title case.** Every elite AI-eng blogger (Willison, Goedecke, Karpathy, Yan, Huyen, Boykis, swyx) writes in sentence case. Title case reads as SEO-optimized marketing or legacy publishing in 2026.
 
 **Five shapes that work in this niche right now**, ranked by fit:
 
-1. **Declarative claim with hidden reversal.** "AI rules drift. Shell scripts don't." / "Hallucinations in code are the least dangerous form of LLM mistakes" (Willison).
+1. **Declarative claim with hidden reversal.** "Don't let your AI decide which rules to follow" / "Hallucinations in code are the least dangerous form of LLM mistakes" (Willison).
 2. **Personal proof-of-work discovery.** "How I replaced 40 lines of CLAUDE.md with 3 shell hooks" / "How I ship projects at big tech companies" (Goedecke).
 3. **Named pattern / coinage / reframe.** "The 70% Problem: Hard Truths About AI-Assisted Coding" (Osmani) / "AI Observability is Just Application Observability" (Carter).
 4. **Earned-metric specificity.** "What I learned from looking at 900 most popular open source AI tools" (Huyen). The number is a proof of work, not a listicle promise.
