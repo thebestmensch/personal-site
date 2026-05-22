@@ -31,3 +31,8 @@ public/pagefind/
 
 # local git worktrees (e.g. .worktrees/<slug>/ for parallel CC sessions)
 .worktrees/
+
+# Personal-local devmarketing skill symlinks (clones of jonathimer/devmarketing-skills)
+.claude/skills/dev-tool-directory-listings
+.claude/skills/developer-seo
+.claude/skills/github-presence
