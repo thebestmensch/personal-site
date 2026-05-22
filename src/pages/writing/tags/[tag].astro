@@ -41,7 +41,10 @@ const posts = await getCollection(
 const sorted = getSortedPosts(posts);
 ---
 
-<Layout title={`#${tagName} | ${SITE.title}`}>
+<Layout
+  title={`#${tagName} | ${SITE.title}`}
+  description={`Posts tagged #${tagName} on jamesmensch.com.`}
+>
   <Header />
   <Main
     pageTitle={[`Posts tagged with `, `#${tagName}`]}
