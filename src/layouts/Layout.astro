@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import { SOCIALS } from "@/constants";
 import "@/styles/global.css";
 
 type Props = {
@@ -28,9 +29,28 @@ const {
 
 const socialImageURL = new URL(ogImage, Astro.url);
 
-// Only emit Article-shaped JSON-LD when this layout renders a real post
-// (pubDatetime is present). Non-post pages get a generic WebSite entity so
-// crawlers don't see datePublished:"undefined".
+// Person sameAs links from the SOCIALS registry (skip mailto: — schema.org
+// sameAs expects profile URLs, not contact methods).
+const personSameAs = SOCIALS.filter(s => !s.href.startsWith("mailto:")).map(
+  s => s.href
+);
+
+const personEntity = {
+  "@type": "Person",
+  "@id": `${SITE.website}#person`,
+  name: author,
+  url: SITE.website,
+  jobTitle: "Founder · Engineer",
+  ...(personSameAs.length > 0 && { sameAs: personSameAs }),
+};
+
+// Three shapes, picked by what the layout is rendering:
+//   - BlogPosting on post pages (pubDatetime present)
+//   - Person + WebSite on the home page
+//   - WebSite alone elsewhere
+// Home detection trims trailing slashes so "/" and "" both match.
+const isHomePage = Astro.url.pathname.replace(/\/$/, "") === "";
+
 const structuredData = pubDatetime
   ? {
       "@context": "https://schema.org",
@@ -47,13 +67,28 @@ const structuredData = pubDatetime
         },
       ],
     }
-  : {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: SITE.title,
-      url: SITE.website,
-      publisher: { "@type": "Person", name: author },
-    };
+  : isHomePage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          personEntity,
+          {
+            "@type": "WebSite",
+            "@id": `${SITE.website}#website`,
+            url: SITE.website,
+            name: SITE.title,
+            description: SITE.desc,
+            publisher: { "@id": `${SITE.website}#person` },
+          },
+        ],
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE.title,
+        url: SITE.website,
+        publisher: { "@type": "Person", name: author },
+      };
 ---
 
 <!doctype html>
