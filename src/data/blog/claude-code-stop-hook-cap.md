@@ -13,7 +13,7 @@ description: "We wrote shell-script gates to enforce AI workflow discipline. The
 
 We use [Claude Code](https://claude.com/claude-code) at OneOnMe. A while back we wrote about [replacing prose rules with shell-script gates](/posts/stop-writing-ai-rules/) for things the assistant kept skipping. Hooks turned advice into enforcement. The discipline became real instead of aspirational.
 
-Then we hit the next problem: what happens when a gate *itself* is the bug.
+Then we hit the next problem: what happens when a gate _itself_ is the bug.
 
 ## The retry storm
 
@@ -23,7 +23,7 @@ But hooks have bugs. Or the file the hook is checking races with the assistant w
 
 When that happens, the gate keeps blocking and the assistant keeps retrying. Forever. No external signal. No timeout. Your turn never ends because every attempt to end it hits the gate, and the gate is wrong about why.
 
-We had three rules in our project memory dedicated to recovering from this exact failure mode. *Re-prime the bypass token, the first attempt always fails.* *Don't pre-augment the edited-files set.* *Touch the bypass file again before retrying.* All band-aids on the same underlying class of bug: a gate that should have given up didn't.
+We had three rules in our project memory dedicated to recovering from this exact failure mode. _Re-prime the bypass token, the first attempt always fails._ _Don't pre-augment the edited-files set._ _Touch the bypass file again before retrying._ All band-aids on the same underlying class of bug: a gate that should have given up didn't.
 
 ## What CC 2.1.147 ships
 
@@ -55,6 +55,6 @@ If you write Claude Code stop hooks, you don't need to change anything. The cap 
 
 If you write a hook that legitimately requires more than 8 consecutive blocks before letting the turn end, ask why. The number 8 was chosen because almost no legitimate workflow exceeds it. The exceptions we've seen are all "the hook is checking a slow remote system" cases, where the right fix is to make the check async and let the hook return success while the result lands in background.
 
-If you've been carrying recovery rules for a stuck-gate failure mode, you can keep them. Recovery procedures are still the right answer when you know a specific gate is wrong. But the underlying *unbounded* case is closed now. That's worth removing from your worry list.
+If you've been carrying recovery rules for a stuck-gate failure mode, you can keep them. Recovery procedures are still the right answer when you know a specific gate is wrong. But the underlying _unbounded_ case is closed now. That's worth removing from your worry list.
 
 We left our recovery rules in project memory. Three more sessions of writing fresh bypasses on retry attempts will tell us whether the cap closes the loop completely or just narrows the failure mode. Either way, a structural cap beats the discipline-only mitigation we had before.

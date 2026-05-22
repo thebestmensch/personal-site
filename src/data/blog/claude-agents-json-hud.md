@@ -58,7 +58,7 @@ We had four other HUD checks built on the same scraping pattern. All four collap
 
 The `--json` flag isn't just a HUD primitive. It opens a class of scripts that were brittle before:
 
-- **tmux-resurrect-style restore.** Snapshot which sessions exist, save them to disk, restore them after a reboot or a CC update. The pinned-session feature in 2.1.147 means sessions can survive the assistant's own restart, but a list of *which sessions you care about* is still your responsibility.
+- **tmux-resurrect-style restore.** Snapshot which sessions exist, save them to disk, restore them after a reboot or a CC update. The pinned-session feature in 2.1.147 means sessions can survive the assistant's own restart, but a list of _which sessions you care about_ is still your responsibility.
 - **Awaiting-input pickers.** A two-key keybinding that lists all sessions in `awaiting_input` state and attaches to the one you pick. Faster than walking the TUI.
 - **Notification routing.** A session that transitions from `working` to `completed` while you're in another app is exactly the kind of thing a desktop notification should fire on. Hook it to your notification daemon of choice.
 - **Per-project budgets.** Aggregate the token counts by project path and warn when a project burns through a daily cap. The TUI doesn't surface this; the JSON makes it a five-line script.
