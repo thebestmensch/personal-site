@@ -11,7 +11,7 @@ tags:
 description: "We wrote shell-script gates to enforce AI workflow discipline. Then the gates themselves started looping. CC 2.1.147 finally added the kill switch."
 ---
 
-We use [Claude Code](https://claude.com/claude-code) at OneOnMe. A while back we wrote about [replacing prose rules with shell-script gates](/posts/stop-writing-ai-rules/) for things the assistant kept skipping. Hooks turned advice into enforcement. The discipline became real instead of aspirational.
+We use [Claude Code](https://claude.com/claude-code) at OneOnMe. A while back we wrote about [replacing prose rules with shell-script gates](/writing/dont-let-ai-decide) for things the assistant kept skipping. Hooks turned advice into enforcement. The discipline became real instead of aspirational.
 
 Then we hit the next problem: what happens when a gate _itself_ is the bug.
 
