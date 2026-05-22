@@ -9,6 +9,7 @@ import { slugifyStr } from "@/utils/slugify";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { formatMonthYear } from "@/utils/formatMonthYear";
 import portrait from "@/assets/portrait.png";
+import couple from "@/assets/couple.png";
 import bean from "@/assets/dogs/bean.png";
 import gia from "@/assets/dogs/gia.png";
 import ruthie from "@/assets/dogs/ruthie.png";
@@ -20,7 +21,7 @@ const recentPosts = getSortedPosts(allPosts).slice(0, 3);
 <Layout>
   <Header />
   <main id="main-content" class="app-layout flex flex-1 flex-col">
-    <section class="mt-12 sm:mt-16">
+    <section class="bio-section mt-12 sm:mt-16">
       <div
         class="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:gap-8"
       >
@@ -47,25 +48,54 @@ const recentPosts = getSortedPosts(allPosts).slice(0, 3);
         </div>
       </div>
 
-      <div class="dog-row mt-5 flex items-end gap-2" aria-hidden="true">
-        <Image src={bean} alt="" width={192} height={208} class="dog dog--sm" />
-        <Image src={gia} alt="" width={192} height={208} class="dog dog--lg" />
-        <Image
-          src={ruthie}
-          alt=""
-          width={192}
-          height={208}
-          class="dog dog--sm"
-        />
+      <div class="bio-prose relative mt-6">
+        <p class="font-serif text-[1.08rem] leading-[1.6] text-foreground">
+          <span class="bio-chunk"
+            >I build for the human side of tech. Cofounder and CTO at OneOnMe, a
+            kinder way to send gifts in an increasingly virtualized world.
+            Before that, cofounded Magnifai for public-agency data work and led
+            product and frontend at New Knowledge, fighting disinformation.
+            Engineer at Google in between. At home in Austin with my
+          </span><span class="dogs-trigger cursor-default"
+            >partner and three dogs</span
+          ><span class="bio-chunk">.</span>
+        </p>
+        <div class="pack-pop" aria-hidden="true">
+          <figure class="pack-cell pack-cell--couple">
+            <Image
+              src={couple}
+              alt=""
+              width={256}
+              height={256}
+              class="pack-img"
+            />
+          </figure>
+          <figure class="pack-cell">
+            <Image
+              src={bean}
+              alt=""
+              width={192}
+              height={208}
+              class="pack-img"
+            />
+            <figcaption>Bean</figcaption>
+          </figure>
+          <figure class="pack-cell pack-cell--lg">
+            <Image src={gia} alt="" width={192} height={208} class="pack-img" />
+            <figcaption>Gia</figcaption>
+          </figure>
+          <figure class="pack-cell">
+            <Image
+              src={ruthie}
+              alt=""
+              width={192}
+              height={208}
+              class="pack-img"
+            />
+            <figcaption>Ruthie</figcaption>
+          </figure>
+        </div>
       </div>
-
-      <p class="mt-6 font-serif text-[1.08rem] leading-[1.6] text-foreground">
-        I build for the human side of tech. Cofounder and CTO at OneOnMe, a
-        kinder way to send gifts in a virtualized world. Before that, cofounded
-        Magnifai for public-agency data work and led product and frontend at New
-        Knowledge, fighting disinformation. Engineer at Google in between. At
-        home in Austin with my partner and three dogs.
-      </p>
     </section>
 
     <section class="mt-14">
@@ -137,17 +167,167 @@ const recentPosts = getSortedPosts(allPosts).slice(0, 3);
 </Layout>
 
 <style>
-  .dog {
+  .dogs-trigger {
+    border-bottom: 1px dotted rgba(127, 127, 127, 0.55);
+    position: relative;
+    z-index: 1;
+  }
+
+  .bio-chunk {
+    transition:
+      filter 240ms ease-out,
+      opacity 240ms ease-out;
+  }
+
+  .bio-section:has(.dogs-trigger:hover) .bio-chunk,
+  .bio-section:has(.dogs-trigger:focus-visible) .bio-chunk {
+    filter: blur(2.5px);
+    opacity: 0.55;
+  }
+
+  .pack-pop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.4rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 6px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .pack-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(18px) scale(0.85);
+    transform-origin: bottom center;
+    transition:
+      opacity 280ms ease-out,
+      transform 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: 0ms;
+  }
+
+  .pack-cell:nth-child(2) {
+    transition-delay: 80ms;
+    margin-right: -40px;
+  }
+  .pack-cell:nth-child(3) {
+    transition-delay: 160ms;
+  }
+  .pack-cell:nth-child(4) {
+    transition-delay: 240ms;
+    margin-left: -25px;
+  }
+
+  .pack-img {
     display: block;
     width: auto;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+    height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.22));
   }
 
-  .dog--sm {
-    height: 44px;
+  .pack-cell--lg .pack-img {
+    height: 135px;
   }
 
-  .dog--lg {
-    height: 56px;
+  .pack-cell--lg figcaption {
+    transform: translateY(-10px);
+  }
+
+  .pack-cell:nth-child(2) figcaption {
+    transform: translateX(6px);
+  }
+
+  .pack-cell--couple .pack-img {
+    height: 110px;
+    border-radius: 6px;
+  }
+
+  @media (min-width: 640px) {
+    .pack-img {
+      height: 100px;
+    }
+    .pack-cell--lg .pack-img {
+      height: 150px;
+    }
+    .pack-cell--couple .pack-img {
+      height: 120px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .pack-pop {
+      display: none;
+    }
+    .dogs-trigger {
+      border-bottom: none;
+      cursor: default;
+    }
+  }
+
+  .pack-cell figcaption {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--color-foreground-muted, currentColor);
+    text-transform: uppercase;
+    margin-top: -6px;
+  }
+
+  .bio-section:has(.dogs-trigger:hover) .pack-cell,
+  .bio-section:has(.dogs-trigger:focus-visible) .pack-cell {
+    opacity: 1;
+  }
+
+  .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(1),
+  .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(1) {
+    transform: translateY(2px) rotate(-7deg) scale(1);
+  }
+
+  .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(2),
+  .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(2) {
+    transform: translateY(-4px) rotate(-13deg) scale(1);
+  }
+
+  .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(3),
+  .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(3) {
+    transform: translateY(1px) rotate(5deg) scale(1);
+  }
+
+  .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(4),
+  .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(4) {
+    transform: translateY(-8px) rotate(11deg) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bio-chunk,
+    .pack-cell {
+      transition:
+        opacity 200ms ease-out,
+        filter 200ms ease-out;
+      transform: none;
+    }
+    .bio-section:has(.dogs-trigger:hover) .pack-cell,
+    .bio-section:has(.dogs-trigger:focus-visible) .pack-cell,
+    .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(1),
+    .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(2),
+    .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(3),
+    .bio-section:has(.dogs-trigger:hover) .pack-cell:nth-child(4),
+    .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(1),
+    .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(2),
+    .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(3),
+    .bio-section:has(.dogs-trigger:focus-visible) .pack-cell:nth-child(4) {
+      transform: none;
+      transition-delay: 0ms;
+    }
   }
 </style>
