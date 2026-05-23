@@ -1,6 +1,5 @@
 ---
 import Breadcrumb from "@/components/Breadcrumb.astro";
-import { SITE } from "@/config";
 
 type StringTitle = { pageTitle: string };
 type ArrayTitle = { pageTitle: [string, string]; titleTransition: string };
@@ -8,12 +7,10 @@ type ArrayTitle = { pageTitle: [string, string]; titleTransition: string };
 type Props = (StringTitle | ArrayTitle) & { pageDesc?: string };
 
 const { props } = Astro;
-
-const backUrl = SITE.showBackButton ? Astro.url.pathname : "/";
 ---
 
 <Breadcrumb />
-<main data-backUrl={backUrl} id="main-content" class="app-layout pb-4">
+<main id="main-content" class="app-layout pb-4">
   {
     "titleTransition" in props ? (
       <h1 class="font-serif text-[1.75rem] leading-[1.18] font-bold tracking-[-0.01em] text-foreground sm:text-[2.1rem] sm:tracking-[-0.015em]">
@@ -37,14 +34,3 @@ const backUrl = SITE.showBackButton ? Astro.url.pathname : "/";
   }
   <slot />
 </main>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const mainContent: HTMLElement | null =
-      document.querySelector("#main-content");
-    const backUrl = mainContent?.dataset?.backurl;
-    if (backUrl) {
-      sessionStorage.setItem("backUrl", backUrl);
-    }
-  });
-</script>
