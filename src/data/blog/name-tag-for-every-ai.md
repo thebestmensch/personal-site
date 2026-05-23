@@ -15,7 +15,7 @@ Every new chat, every new repo, every new agent, I re-onboard myself. I re-expla
 
 The shape I keep coming back to is a folder I own at `~/.me/`. Four plain files. No service, no daemon, no account to log into. Every tool that opts in reads them at session start.
 
-```
+```text
 ~/.me/
 ├── identity.yaml       # name, timezone, dogs, work, what I know
 ├── voice.md            # how I sound: tone, lexicon, anti-patterns, samples
