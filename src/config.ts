@@ -10,7 +10,6 @@ export const SITE = {
   postPerPage: 6,
   scheduledPostMargin: 15 * 60 * 1000,
   showArchives: false,
-  showBackButton: true,
   editPost: {
     enabled: false,
     text: "",
