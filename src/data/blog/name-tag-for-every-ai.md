@@ -30,9 +30,9 @@ Two lines on each:
 - **`preferences.yaml`** is what I like and what to avoid. Editors, themes, color temperature, tools never to suggest.
 - **`working-style.yaml`** is how I want the AI to work with me. Autonomy level, when to ask, what counts as irreversible.
 
-Different lifecycles. Identity rarely changes; preferences churn. Splitting them means I can update my color temperature without re-invalidating the file that says my name is James.
+Different lifecycles. Identity rarely changes, preferences churn. Splitting them means I can update my color temperature without re-invalidating the file that says my name is James.
 
-## Why it's not just CLAUDE.md
+## The CLAUDE.md critique
 
 The reflexive critique: this is CLAUDE.md with a YAML on top.
 
