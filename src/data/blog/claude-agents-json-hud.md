@@ -1,6 +1,6 @@
 ---
 author: James Mensch
-pubDatetime: 2026-05-21T22:30:00Z
+pubDatetime: 2026-05-17T22:30:00Z
 title: "Stop parsing TUI screenshots. claude agents --json is the HUD primitive."
 featured: false
 draft: false

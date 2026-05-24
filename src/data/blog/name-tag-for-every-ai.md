@@ -1,6 +1,6 @@
 ---
 author: James Mensch
-pubDatetime: 2026-05-23T16:00:00Z
+pubDatetime: 2026-05-24T16:00:00Z
 title: Hand every AI you use the same name tag
 featured: false
 draft: false

@@ -1,6 +1,6 @@
 ---
 author: James Mensch
-pubDatetime: 2026-05-17T18:30:00Z
+pubDatetime: 2026-05-03T18:30:00Z
 title: Don't let your AI decide which rules to follow
 featured: true
 draft: false
