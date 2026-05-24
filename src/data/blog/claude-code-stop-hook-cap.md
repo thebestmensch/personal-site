@@ -1,6 +1,6 @@
 ---
 author: James Mensch
-pubDatetime: 2026-05-21T22:00:00Z
+pubDatetime: 2026-05-10T22:00:00Z
 title: "Cap your AI assistant's retry storms before the gate becomes the problem"
 featured: false
 draft: false
