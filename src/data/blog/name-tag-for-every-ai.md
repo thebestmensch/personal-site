@@ -50,7 +50,7 @@ If an agent silently rewrites your voice file, every downstream tool starts prod
 
 A SessionStart hook baselines a SHA of each file when a session begins. The `/me` command runs every edit through a managed path that updates the baseline. Direct edits via the model's file-editing tool fail integrity check, and the next session warns. If I want to edit by hand, I run `/me reconcile` and re-approve.
 
-This is the kind of thing that has to be a hook, not a rule. I [wrote about that last week](/posts/dont-let-ai-decide/): operational invariants don't belong in advice memory. They belong in shell scripts the harness runs.
+This is the kind of thing that has to be a hook, not a rule. I [wrote about that recently](/writing/dont-let-ai-decide/): operational invariants don't belong in advice memory. They belong in shell scripts the harness runs.
 
 ## Where this won't help you
 
