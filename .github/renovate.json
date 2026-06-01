@@ -8,10 +8,5 @@
   "semanticCommitScope": "deps",
   "schedule": ["before 6am on monday"],
   "prConcurrentLimit": 5,
-  "enabledManagers": [
-    "npm",
-    "dockerfile",
-    "docker-compose",
-    "github-actions"
-  ]
+  "enabledManagers": ["npm", "dockerfile", "docker-compose", "github-actions"]
 }
