@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "semanticCommitScope": "deps",
+  "schedule": ["before 6am on monday"],
+  "prConcurrentLimit": 5,
+  "enabledManagers": ["npm", "dockerfile", "docker-compose", "github-actions"]
+}
