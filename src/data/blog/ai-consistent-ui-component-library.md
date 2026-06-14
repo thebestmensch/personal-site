@@ -3,7 +3,7 @@ author: James Mensch
 pubDatetime: 2026-05-31T16:00:00Z
 title: AI gives you consistent UI only after you build the system it copies from
 featured: false
-draft: true
+draft: false
 tags:
   - ai-tools
   - design-systems
@@ -31,7 +31,7 @@ The source of truth is a single file, `COMPONENTS.md`, that lives next to the sh
 
 Every primitive is listed with its class names, its slots, and the one rule that makes ten apps feel like siblings instead of twins: structure is shared, only the accent color is overridden per app. Bookshelf is slate blue, Recipes is sage, Screenroom is purple, and they all pull the same `.card`. A companion page renders every component live with all the accents side by side, so "what does the canonical version look like" is a link, not an archaeology dig.
 
-(Before building this I evaluated [Storybook](https://storybook.js.org/), [Ladle](https://ladle.dev/), and the rest, and chose to extend an in-house page instead. A framework is the right call when you have a JS frontend and a team; I have neither. The catalog is a markdown file and one route.)
+(Before building this I evaluated [Storybook](https://storybook.js.org/), [Ladle](https://ladle.dev/), and the rest, and chose to extend an in-house page instead. A framework is the right call when you have a JS frontend and a team. I have neither. The catalog is a markdown file and one route.)
 
 ## The gate: because nobody runs the propagation step
 
@@ -50,7 +50,7 @@ Editing a shared component means propagating it to each app's local copy. I forg
 
 Canonicalizing feels like it should run to completion. Every duplicated class name converged, the audit driven to zero. That instinct is wrong, and catching it is the part nobody warns you about.
 
-One app, Recipes, redefines the base card on purpose. Its photos sit in a fixed-height band instead of the aspect-ratio crop the other apps use, with heavier padding and a title that wraps. A grid of dishes should scan as a uniform row of plates; book covers and movie posters want the variable-height crop. Those are different visual jobs. Worse, the override can't be lifted into a single shared modifier, because the class lands on two different DOM shapes depending on the template, and one rule can't serve both.
+One app, Recipes, redefines the base card on purpose. Its photos sit in a fixed-height band instead of the aspect-ratio crop the other apps use, with heavier padding and a title that wraps. A grid of dishes should scan as a uniform row of plates, but book covers and movie posters want the variable-height crop. Those are different visual jobs. Worse, the override can't be lifted into a single shared modifier, because the class lands on two different DOM shapes depending on the template, and one rule can't serve both.
 
 So I didn't fix it. I blessed it. The catalog now has a section for intentional divergence, and the Recipes card is documented there with the full rationale: what it overrides, why it's a domain decision and not drift, why it resists a clean modifier. The point isn't the one exception. It's that a catalog which only records convergence quietly pressures you to over-canonicalize, to flatten a real design difference into sameness because the audit wants a zero. Write down the divergences too, with their reasons, so the next audit, run by me or by the agent, doesn't helpfully sweep them back up.
 
