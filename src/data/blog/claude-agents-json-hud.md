@@ -27,7 +27,7 @@ claude agents --json
 
 You get one JSON object per live session: an id, a display name, a working directory, a status (`working`, `awaiting_input`, `completed`, `stopped`), a token count, the model, whether the session is pinned, a recent prompt snippet, and the project path. Roughly what the TUI shows, in a shape a script can consume without breaking the next time someone changes a separator.
 
-That's the whole feature. It's not a new capability. It's the existing capability made addressable.
+That's the whole feature. It's not a new capability, just the existing one made addressable.
 
 ## Before and after
 
@@ -56,12 +56,12 @@ We had four other HUD checks built on the same scraping pattern. All four collap
 
 ## What else it makes scriptable
 
-The `--json` flag isn't just a HUD primitive. It opens a class of scripts that were brittle before:
+The `--json` flag opens a class of scripts that were brittle before:
 
 - **tmux-resurrect-style restore.** Snapshot which sessions exist, save them to disk, restore them after a reboot or a CC update. The pinned-session feature in 2.1.147 means sessions can survive the assistant's own restart, but a list of _which sessions you care about_ is still your responsibility.
 - **Awaiting-input pickers.** A two-key keybinding that lists all sessions in `awaiting_input` state and attaches to the one you pick. Faster than walking the TUI.
 - **Notification routing.** A session that transitions from `working` to `completed` while you're in another app is exactly the kind of thing a desktop notification should fire on. Hook it to your notification daemon of choice.
-- **Per-project budgets.** Aggregate the token counts by project path and warn when a project burns through a daily cap. The TUI doesn't surface this; the JSON makes it a five-line script.
+- **Per-project budgets.** Aggregate the token counts by project path and warn when a project burns through a daily cap. The TUI doesn't surface this, but the JSON makes it a five-line script.
 
 The pattern is the same in each case. The data was always there. The scripting interface arrived late. Now that it's here, build the small thing you wanted before.
 
@@ -71,6 +71,6 @@ If you've been scraping `claude agents` output, rewrite those scripts against `-
 
 If you've been wanting to script around session state but didn't because the surface looked hostile, look again. The hostile part is gone.
 
-One small caveat: `--json` returns the snapshot at the moment of the call. There's no stream-as-it-changes mode yet. If you want a live-updating display, you're still polling. We poll once per second from the tmux status bar and have not noticed it on the CPU graph; the listing is local and fast.
+One small caveat: `--json` returns the snapshot at the moment of the call. There's no stream-as-it-changes mode yet. If you want a live-updating display, you're still polling. We poll once per second from the tmux status bar and have not noticed it on the CPU graph, because the listing is local and fast.
 
 We treat upstream's small additions as load-bearing more often than we treat their big ones. Big features get headlines. Small JSON outputs are how you stop hand-rolling the wrong abstraction.
