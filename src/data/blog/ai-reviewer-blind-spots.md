@@ -3,7 +3,7 @@ author: James Mensch
 pubDatetime: 2026-06-21T16:00:00Z
 title: Your AI reviewer shares your AI coder's blind spots
 featured: false
-draft: true
+draft: false
 tags:
   - ai-tools
   - code-review
@@ -17,7 +17,7 @@ The change touched an internal write path in a service I'm building. A reviewer 
 
 That's the pattern worth talking about, because it's easy to file as a fluke, and it isn't one.
 
-A few days earlier, a simpler version sent me looking. Claude wrote a database migration. My review passes, also Claude, approved it. The new table declared its key as `id TEXT PRIMARY KEY`, and everyone read that the way you'd expect, a column that's unique and never null. In SQLite it's [neither](https://www.sqlite.org/lang_createtable.html):
+A few days earlier, a simpler version sent me looking. Claude wrote a database migration. My review passes, also Claude, approved it. The new table declared its key as `id TEXT PRIMARY KEY`, which seemed like a column that's unique and never null. In SQLite it's [neither](https://www.sqlite.org/lang_createtable.html):
 
 > According to the SQL standard, PRIMARY KEY should always imply NOT NULL. Unfortunately, due to a bug in some early versions, this is not the case in SQLite.
 
