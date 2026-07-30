@@ -1,0 +1,83 @@
+# CodeRabbit configuration for thebestmensch/personal-site.
+#
+# Deliberately minimal. The one behavioural change is that DRAFT pull requests
+# are not auto-reviewed: reviewing a draft and then its ready-flip spends two
+# reviews on one diff, and a draft is by definition still moving. The rest just
+# pins a consistent review profile.
+#
+# WHY THERE IS NO KEYWORD FILTER FOR PROSE PRs:
+# CodeRabbit's fair-usage limit is a rolling counter scoped to the DEVELOPER, not
+# the repo — so every repo one identity pushes to draws on one shared budget, and
+# the busy repos have been tuned to protect it. This repo is not one of them: it
+# has averaged roughly three PRs a week since May and none at all in the trailing
+# seven days, which is a rounding error against that budget.
+#
+# That matters because the obvious filter here would be `content(` — the prefix
+# on blog PRs, which really are pure prose (every `content(blog):` PR to date has
+# touched only `src/data/blog/*.md`, code untouched). So the rows would be SAFE.
+# They would just not buy anything: a handful of suppressed reviews a week, in
+# exchange for removing the only automated proofreading pass over the one thing
+# this repo publishes. Bad trade at this volume. Revisit if the rate climbs.
+
+language: en-US
+early_access: false
+
+tone_instructions: "Be terse. Lead with issues, not praise. Don't restate the diff."
+
+reviews:
+  profile: assertive
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: true
+
+  auto_review:
+    enabled: true
+
+    # Drafts are not auto-reviewed. To get a pass on one anyway, comment
+    # `@coderabbitai review` on the PR.
+    #
+    # Free to set HERE, and not free everywhere — check before copying this line
+    # into another repo. The only workflow here (`ci.yml`) runs lint, format and
+    # build on `pull_request`; nothing keys off a CodeRabbit event. In a repo
+    # where a workflow flips a PR ready in response to CodeRabbit's own
+    # `pull_request_review` event, turning off draft review strands every such PR
+    # in draft forever with no error surfaced anywhere. If `ci.yml` ever grows
+    # that dependency, flip this back first.
+    drafts: false
+
+    base_branches:
+      - main
+
+    # SHAPE-based suppression of automatic review only; files stay visible, so
+    # on-demand review still reaches them. Held to the two keywords that mean
+    # "not ready to read" — see the header for why `content(` is not here.
+    ignore_title_keywords:
+      - "WIP"
+      - "DO NOT MERGE"
+
+  # Signal-poor here: these diffs are Astro components, prose, and config rather
+  # than call graphs.
+  sequence_diagrams: false
+
+# ── Three things to know before extending this file ──────────────────────────
+#
+# 1. A `custom_checks` entry whose `name` exceeds 50 characters is a FATAL parse
+#    error that silently reverts this ENTIRE file to CodeRabbit's defaults. Those
+#    defaults review drafts and apply no filter, so the failure mode presents as
+#    "config is present, none of it applies." None are defined here.
+#
+# 2. Do NOT reach for `path_filters` to exclude paths. Its patterns drive
+#    CodeRabbit's `git sparse-checkout`, so excluded files are never cloned and
+#    become invisible to on-demand review TOO — coverage on a filtered path
+#    cannot be recovered by asking. `ignore_title_keywords` is the recoverable
+#    lane; that is why it is the one used above.
+#
+# 3. Verify a config change actually took effect before trusting it. A green
+#    `CodeRabbit` commit status proves nothing on its own: its `state` is
+#    `success` for "Review completed", "Review rate limited", AND "Review
+#    skipped". The `description` is the only discriminator:
+#
+#      gh api repos/{owner}/{repo}/commits/<sha>/status \
+#        --jq '.statuses[]|select(.context=="CodeRabbit")|"\(.state) | \(.description)"'
